@@ -1,4 +1,4 @@
-export function parseArgs(processArgs: string[] | undefined) {
+export function parseArgs(processArgs: string[] | null | undefined = null) {
   //@ts-ignore
   const args = processArgs || process.argv.slice(2);
   const items: {
@@ -6,6 +6,8 @@ export function parseArgs(processArgs: string[] | undefined) {
     type: "$" | "-" | "--";
     value: string | boolean;
   }[] = [];
+  const $items: string[] = []
+  const $other: string[] = []
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a.slice(0, 2) == "--") {
@@ -52,12 +54,10 @@ export function parseArgs(processArgs: string[] | undefined) {
           value: value,
         });
       }
-    } else {
-      items.push({
-        type: "$",
-        name: a,
-        value: true,
-      });
+    } else if(items.length == 0){
+      $items.push(a)
+    }else{
+      $other.push(a)
     }
   }
   return items.reduce(
@@ -65,6 +65,6 @@ export function parseArgs(processArgs: string[] | undefined) {
       ...o,
       [item.name]: item.value,
     }),
-    {},
+    { $path: $items, $other },
   );
 }
