@@ -1,6 +1,6 @@
-export function parseArgs() {
+export function parseArgs(processArgs: string[] | undefined) {
   //@ts-ignore
-  const args = process.argv.slice(2);
+  const args = processArgs || process.argv.slice(2);
   const items: {
     name: string;
     type: "$" | "-" | "--";

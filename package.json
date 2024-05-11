@@ -1,5 +1,5 @@
 {
-  "name": "easyargs",
+  "name": "debaargs",
   "version": "0.0.1",
   "description": "simple args parser",
   "main": "dist/index.js",
