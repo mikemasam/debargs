@@ -1,0 +1,23 @@
+{
+  "name": "easyargs",
+  "version": "0.0.1",
+  "description": "simple args parser",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "bun --watch test.ts ",
+    "build": "tsc"
+  },
+  "files": [
+    "dist",
+    "tsconfig.json",
+    "package.json"
+  ],
+  "author": "Masam Technologies LTD",
+  "license": "GPL",
+  "homepage": "https://github.com/mikemasam/easyargs#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikemasam/easyargs.git"
+  }
+}
