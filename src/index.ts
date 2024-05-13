@@ -74,7 +74,7 @@ export function parseArgs(
   );
 }
 
-type ArgvResult = {
+export type ArgvResult = {
   $primary: string[];
   $secondary: string[];
   argv: { [key: string]: boolean | string };
