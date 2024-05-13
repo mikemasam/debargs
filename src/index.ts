@@ -1,4 +1,6 @@
-export function parseArgs(processArgs: string[] | null | undefined = null) {
+export function parseArgs(
+  processArgs: string[] | null | undefined = null,
+): ArgvResult {
   //@ts-ignore
   const args = processArgs || process.argv.slice(2);
   const items: {
@@ -6,8 +8,8 @@ export function parseArgs(processArgs: string[] | null | undefined = null) {
     type: "$" | "-" | "--";
     value: string | boolean;
   }[] = [];
-  const $items: string[] = []
-  const $other: string[] = []
+  const $primary: string[] = [];
+  const $secondary: string[] = [];
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a.slice(0, 2) == "--") {
@@ -54,17 +56,27 @@ export function parseArgs(processArgs: string[] | null | undefined = null) {
           value: value,
         });
       }
-    } else if(items.length == 0){
-      $items.push(a)
-    }else{
-      $other.push(a)
+    } else if (items.length == 0) {
+      $primary.push(a);
+    } else {
+      $secondary.push(a);
     }
   }
   return items.reduce(
     (o, item) => ({
       ...o,
-      [item.name]: item.value,
+      argv: {
+        ...o.argv,
+        [item.name]: item.value,
+      },
     }),
-    { $path: $items, $other },
+    { $primary, $secondary, argv: {} },
   );
 }
+
+console.log(parseArgs())
+type ArgvResult = {
+  $primary: string[];
+  $secondary: string[];
+  argv: { [key: string]: boolean | string };
+};
