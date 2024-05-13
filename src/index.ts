@@ -74,7 +74,6 @@ export function parseArgs(
   );
 }
 
-console.log(parseArgs())
 type ArgvResult = {
   $primary: string[];
   $secondary: string[];
