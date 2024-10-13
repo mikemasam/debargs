@@ -13,11 +13,11 @@
     "tsconfig.json",
     "package.json"
   ],
-  "author": "Masam Technologies LTD",
+  "author": "mikemasam",
   "license": "GPL",
-  "homepage": "https://github.com/mikemasam/easyargs#readme",
+  "homepage": "https://github.com/mikemasam/debargs#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mikemasam/easyargs.git"
+    "url": "https://github.com/mikemasam/debargs.git"
   }
 }
